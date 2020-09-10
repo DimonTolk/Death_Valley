@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['', ''],
+                @ViewBag.points
+            ]);
+
+            var options = {
+                title: 'Parabola',
+                curveType: 'function',
+                legend: { position: 'none' },
+                hAxis: {
+                    minValue:@ViewBag.min,
+                    maxValue:@ViewBag.max,
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+            chart.draw(data, options);
+        }
+    </script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    @RenderBody()
+</body>
+</html>
